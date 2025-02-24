@@ -27,7 +27,7 @@ const Register = () => {
 
     try {
       const res = await axios.post(
-        "http://localhost:5000/api/auth/register",
+        "hrms-psquare-11p8.vercel.app/register",
         formData
       );
       console.log("Registration successful:", res.data);
