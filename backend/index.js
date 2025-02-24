@@ -12,7 +12,12 @@ const candidateRoutes = require("./routes/candidateRoutes");
 dotenv.config();
 const app = express();
 // app.use(cors());
-app.use(cors({ origin: "http://localhost:3000", credentials: true }));
+// app.use(cors({ origin: "http://localhost:3000", credentials: true }));
+app.use(cors({
+  origin: ["https://your-frontend.vercel.app"], // Allow requests from your frontend
+  methods: ["GET", "POST", "PUT", "DELETE], // Allowed methods
+  credentials: true // Allow cookies (if needed)
+}));
 app.use(express.json());
 app.use(cookieParser());
 
@@ -27,7 +32,9 @@ connect()
     process.exit(1);
   });
 
-
+app.get("/", (req, res) => {
+  res.send("🚀 Backend is running successfully!");
+});
 app.use('/api/auth', authRoutes);
 app.use("/api/candidates", candidateRoutes);
 
